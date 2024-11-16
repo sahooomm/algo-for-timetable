@@ -139,7 +139,7 @@ db_config = {
     'user': 'root',
     'password': 'rootroot',
     'host': 'localhost',
-    'database': 'capstone1',  # Use "Gemini" for the database name
+    'database': 'capstone2',  # Use "Gemini" for the database name
 }
 
 
@@ -148,7 +148,7 @@ db_config = {
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index1.html')
 
 
 @app.route('/add_C1', methods=['POST'])
@@ -394,9 +394,33 @@ def add_Course():
 
         except mysql.connector.Error as error:
             return jsonify({'status': 'error', 'message': f"Failed to insert data: {error}"})
-
+        
 @app.route('/run_script', methods=['POST'])
 def run_script():
+    if request.method == 'POST':
+        try:
+            # Render the new HTML page when the form is submitted
+            return render_template('index2.html')  # Load new content
+
+        except Exception as e:
+            # Handle any exceptions and render an error message
+            return f"An unexpected error occurred: {str(e)}"
+        
+@app.route('/run_script1', methods=['POST'])
+def run_script1():
+    if request.method == 'POST':
+        try:
+            # Render the new HTML page when the form is submitted
+            return render_template('index3.html')  # Load new content
+
+        except Exception as e:
+            # Handle any exceptions and render an error message
+            return f"An unexpected error occurred: {str(e)}"
+            
+
+
+@app.route('/run_script3', methods=['POST'])
+def run_script3():
     if request.method == 'POST':
         try:
             # Run the genetic algorithm script

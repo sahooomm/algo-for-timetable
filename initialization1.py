@@ -9,7 +9,7 @@ db_config = {
     'user': 'root',
     'password': 'rootroot',
     'host': 'localhost',
-    'database': 'capstone1',
+    'database': 'capstone2',
 }
 
 connection = mysql.connector.connect(**db_config)
@@ -71,6 +71,7 @@ def initializeTables():
     subject_batch_dict = {i: list(tdf['Course_Code']) + ['NC'+str(i)]
                           for i, tdf in cp.groupby('Semester')}
     
+    
     no_class_hours_dict = {'NC'+str(i): 30 - tdf['NOCW'].sum()
                            for i, tdf in cp.groupby('Semester')}
     course_type_dict = {'NC'+str(i): 'NC' for i in total_batch_list}
@@ -122,10 +123,10 @@ def slotstoweek(slotting):
 
 # Intialization 
 
-
-    
+initializeTables()
+print(subject_batch_dict)
    
-    
+# (i*2)+2])-1 
     
 
 # Initialize a week chromosome 
@@ -143,7 +144,7 @@ def initializeChromosome():
     for day in week:
         for slot in day:
             for i in range(len(slot)):
-                rn = random.randint(0, len(subject_batch_dict[(i*2)+2])-1)
+                rn = random.randint(0, len(subject_batch_dict[(i*2) + 2])-1)
                 sub = subject_batch_dict[(i*2)+2][rn]
                 if course_type_dict[sub] == 'NC':
                     if no_class_hours_dict[sub]>0:
@@ -171,7 +172,7 @@ def initializeChromosome():
                             subject_batch_dict[(i*2)+2].remove(sub)
                             
     return week
-    # return week
+ 
 
 
 
@@ -180,68 +181,13 @@ def initializeChromosome():
 
 
     
-# def initializeChromosomeRandom():
-#     initializeTables()
-#     week = []
-#     for i in range(5):
-#         day = []
-#         for j in range(6):
-#             slots = ['' for k in range(4)]
-#             day.append(slots)
-#         week.append(day)
 
-#     week = weektoslots(week)
-#     bl = [2,4,6,8]
-#     while subject_batch_dict!={}:
-
-#         rns = random.randint(0,29)
-#         rnb = random.choice(bl)
-       
-#         if week[rns][(rnb//2)-1] == '':
-#             sub = random.choice(subject_batch_dict[rnb])
-
-#             if course_type_dict[sub] == 'NC':
-#                 if no_class_hours_dict[sub]>0:
-#                     week[rns][(rnb//2)-1] += ''
-#                     no_class_hours_dict[sub]-=1
-#                     if no_class_hours_dict[sub] == 0:
-#                         subject_batch_dict[rnb].remove(sub)
-#             elif course_type_dict[sub] == 'N':
-#                 if subject_credithour_dict[sub]>0:
-#                     week[rns][(rnb//2)-1] += sub
-#                     subject_credithour_dict[sub]-=1
-#                     if subject_credithour_dict[sub] == 0:
-#                         subject_batch_dict[rnb].remove(sub)
-#             elif course_type_dict[sub] == "L":
-#                 if subject_lab_credithour_dict[sub]>0:
-#                     week[rns][(rnb//2)-1] += sub
-#                     subject_lab_credithour_dict[sub]-=1 
-#                     if subject_lab_credithour_dict[sub] == 0:
-#                         subject_batch_dict[rnb].remove(sub)
-            
-#             if subject_batch_dict[rnb] == []:
-#                 del subject_batch_dict[rnb]
-#                 bl.remove(rnb)
-
-#         else:
-#             continue
-#     return (slotstoweek(week))
-
-
-# CREATE A VERY SPECIFIC SELECTIVE INITIALIZATION WITH 2 HOURS CLASS PUT TO PLACE AND 
-# CLASSES TODAY NOT PLACED TMRW UNLESS NEEDED SO 
-# ALSO NOT FILL FIRST AND LAST SLOT IF NEEDED SO
-
-
-
-
-# Create a population 
 popz = 100
 pop = []
 for i in range(popz):
     pop.append(initializeChromosome())
     
-
+print(pop)
 
 # popz = 100
 # pop = {}

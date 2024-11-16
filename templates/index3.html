@@ -191,73 +191,15 @@ li form input[type="submit"]:active {
 
    
     <div class="container"  style="opacity: 0; transform: translateY(20px);">
-        <h1>Run Time Table</h1>
-        <form  id="add-faculty-form" action="{{ url_for('add_faculty') }}" method="POST">
-            <h2>FACULTY DETAILS</h2>
-            <div id="faculty-details">
-                <div class="input-box">
-                    <input type="text" name="id" placeholder="Faculty Name">
-                </div>
-                <div class="input-box">
-                    <input type="text" name="faculty_name" placeholder="Faculty Name">
-                </div>
-                <div class="input-box">
-                    <input type="text" name="visiting" placeholder="Visiting">
-                </div>
-                <div class="input-box">
-                    <input type="text" name="faculty_id" placeholder="Faculty ID">
-                </div>
-                <button class="add-btn" type="submit">Add</button>
-                
-            </div>
+        <h1>Add constarints</h1>
+        
 
            
             
 
             
-        </form>
-        <!-- ... your existing code ... -->
+        
 
-
-        <div >
-            
-            <form  id="add-Course-form" action="{{ url_for('add_Course') }}" method="POST">
-                <h2>COURSE DETAILS</h2>
-                <div id="Course-details">
-                    <div class="input-box">
-                        <input type="text" name="id1" placeholder="Course Id">
-                    </div>
-                    <div class="input-box">
-                        <input type="text" name="coursename" placeholder="Course Name">
-                    </div>
-                    <div class="input-box">
-                        <input type="text" name="coursecode" placeholder="Course Code">
-                    </div>
-                    <div class="input-box">
-                        <input type="text" name="sem" placeholder="Semester">
-                    </div>
-                    <div class="input-box">
-                        <input type="text" name="facultyid" placeholder="Faculty id">
-                    </div>
-                    <div class="input-box">
-                        <input type="text" name="nocw" placeholder="NOCW">
-                    </div>
-                    <div class="input-box">
-                        <input type="text" name="type" placeholder="Type">
-                    </div>
-                    
-                    
-                </div>
-    
-               
-                
-    
-                
-            </form>
-            <!-- ... your existing code ... -->
-    
-    
-        </div>
 
 
         <ul>
@@ -316,7 +258,7 @@ li form input[type="submit"]:active {
 
     
 
-    <form class="myform" id="constraints-form" action="{{ url_for('run_script') }}" method="POST"style="margin-left:550px;">
+    <form class="myform" id="constraints-form" action="{{ url_for('run_script3') }}" method="POST"style="margin-left:550px;">
         <button type="submit">Submit</button>
     </form>
 
@@ -352,51 +294,7 @@ li form input[type="submit"]:active {
 
 
 
-        $('#add-faculty-form').submit(function(event) {
-            event.preventDefault(); // Prevent default form submission
-            var form = $(this);
-        
-            console.log("Form data:", form.serialize()); // Log the form data
-        
-            $.ajax({
-                url: form.attr('action'),
-                type: form.attr('method'),
-                data: form.serialize(),
-                success: function(response) {
-                    console.log("Server Response:", response); // Log the server response
-                    if (response.status === 'success') {
-                        alert(response.message);
-                        $('#faculty-details input').val(''); // Clear input fields
-                        // You may want to update the faculty table here
-                    } else if (response.status === 'error') {
-                        alert(response.message);
-                    }
-                }
-            });
-        });
-
-        $('#add-Course-form').submit(function(event) {
-            event.preventDefault(); // Prevent default form submission
-            var form = $(this);
-        
-            console.log("Form data:", form.serialize()); // Log the form data
-        
-            $.ajax({
-                url: form.attr('action'),
-                type: form.attr('method'),
-                data: form.serialize(),
-                success: function(response) {
-                    console.log("Server Response:", response); // Log the server response
-                    if (response.status === 'success') {
-                        alert(response.message);
-                        $('#Course-details input').val(''); // Clear input fields
-                        // You may want to update the faculty table here
-                    } else if (response.status === 'error') {
-                        alert(response.message);
-                    }
-                }
-            });
-        });
+       
 
         
         window.addEventListener('unload', function () {
