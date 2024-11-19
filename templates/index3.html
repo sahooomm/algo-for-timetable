@@ -8,253 +8,222 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <style>
         /* Global Styles */
-        /* Global Styles */
-body {
-    font-family: 'Open Sans', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f0f2f5;
-    color: #333;
-    line-height: 1.6;
-}
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+            color: #333;
+        }
 
-/* Container */
-.container {
-    max-width: 700px;
-    margin: 40px auto;
-    padding: 30px;
-    background: linear-gradient(145deg, #ffffff, #e6e6e6);
-    border-radius: 15px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+        /* Container */
+        .container {
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 30px;
+            background: linear-gradient(145deg, #ffffff, #e6e6e6);
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
 
-.container:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-}
+        /* Heading */
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            text-align: center;
+            background: linear-gradient(to right, #0d6efd, #6610f2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-/* Headings */
-h1, h2 {
-    color: #111;
-    font-weight: 700;
-    margin-bottom: 20px;
-    text-align: center;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-}
+        /* List Styles */
+        ul {
+            list-style: none;
+            padding: 0;
+        }
 
-h1 {
-    font-size: 2.5rem;
-    margin-bottom: 30px;
-    background: -webkit-linear-gradient(#0d6efd, #6610f2);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
+        li {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
 
-/* Form Styles */
-form {
-    margin-top: 20px;
-}
+        li label {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
 
-.input-box {
-    margin-bottom: 20px;
-}
+        /* Checkbox */
+        .constraint-checkbox {
+            width: 20px;
+            height: 20px;
+            accent-color: #0d6efd;
+        }
 
-.input-box input[type="text"] {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    background-color: #f7f7f7;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-}
+        /* Button Styling */
+        .button {
+            background-color: #0d6efd;
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 15px; /* Space between buttons */
+            display: block;
+            width: 200px; /* Set fixed width for the button */
+            text-align: center; /* Center the text */
+            font-size: 1.1rem; /* Slightly bigger font for better readability */
+        }
 
-.input-box input[type="text"]:focus {
-    border-color: #0d6efd;
-    background-color: #fff;
-    box-shadow: 0 0 8px rgba(0, 153, 255, 0.4);
-    outline: none;
-}
+        .button:hover {
+            background-color: #0056b3;
+        }
 
-/* Button Styles */
-button[type="submit"],
-input[type="submit"] {
-    background-color: #0d6efd;
-    color: #fff;
-    padding: 12px 25px;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    font-size: 1.1rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    box-shadow: 0 4px 10px rgba(0, 153, 255, 0.3);
-}
+        /* Tooltip styling */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+        }
 
-button[type="submit"]:hover,
-input[type="submit"]:hover {
-    background-color: #0056b3;
-    transform: translateY(-2px);
-}
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%; /* Position the tooltip above the button */
+            left: 50%;
+            margin-left: -100px; /* Center the tooltip */
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
 
-button[type="submit"]:active,
-input[type="submit"]:active {
-    background-color: #003d80;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    transform: translateY(1px);
-}
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
 
-/* Checkbox Styles */
-.checkbox-column {
-    margin-top: 20px;
-}
+        /* Dropdown Styling */
+        .dropdown {
+            margin-top: 10px;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 0.9rem;  /* Smaller font size */
+            width: 150px;  /* Smaller width */
+            text-align: center;  /* Center the text inside the dropdown */
+        }
 
-.checkbox-column label {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-    cursor: pointer;
-}
+        /* Hide dropdown container by default */
+        #dropdown-container {
+            display: none;
+            display: flex;
+            justify-content: center;  /* Center the dropdowns horizontally */
+            gap: 10px;  /* Space between the dropdowns */
+        }
 
-.checkbox-column input[type="checkbox"] {
-    margin-right: 10px;
-    accent-color: #0d6efd;
-    transform: scale(1.2);
-}
+        /* Centering the submit button */
+        .myform {
+            display: flex;
+            justify-content: center;  /* Center the button horizontally */
+            margin-top: 20px;  /* Optional: space from the form above */
+        }
 
-/* List Styles */
-ul {
-    padding-left: 0;
-    list-style: none;
-}
-
-li {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 20px;
-}
-
-li p {
-    font-size: 1.1rem;
-    font-weight: 500;
-}
-
-li form input[type="submit"] {
-    font-size: 1.5rem;
-    padding: 5px 10px;
-    border-radius: 50%;
-    box-shadow: 0 4px 8px rgba(0, 153, 255, 0.3);
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-li form input[type="submit"]:hover {
-    background-color: #0056b3;
-}
-
-li form input[type="submit"]:active {
-    transform: scale(0.95);
-}
-
-/* Responsive Design */
-@media only screen and (max-width: 768px) {
-    .container {
-        margin: 20px auto;
-        padding: 20px;
-    }
-
-    h1 {
-        font-size: 2rem;
-    }
-    
-    h2 {
-        font-size: 1.5rem;
-    }
-
-    li {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    li form {
-        margin-top: 10px;
-    }
-}
+   
 
     </style>
 </head>
 <body>
 
    
-    <div class="container"  style="opacity: 0; transform: translateY(20px);">
-        <h1>Add constarints</h1>
-        
-
-           
-            
-
-            
-        
-
-
-
-        <ul>
-            <li><p>Classes of faculty should not clash</p>
-                <form class="ajax-form" action="{{ url_for('add_C1') }}" method="POST">
-                    <input type="submit" value="&rarr;">
-                </form>
-            </li>
-            <li><p>No lab class should be clash</p>
-                <form class="ajax-form" action="{{ url_for('add_C2') }}" method="POST">
-                    <input type="submit" value="&rarr;">
-                </form>
-            </li>
-            <li><p>No blank class</p>
-                <form class="ajax-form" action="{{ url_for('add_C3') }}" method="POST">
-                    <input type="submit" value="&rarr;">
-                </form>
-            </li>
-            <li><p>Repeated class</p>
-                <form class="ajax-form" action="{{ url_for('add_C4') }}" method="POST">
-                    <input type="submit" value="&rarr;">
-                </form>
-            </li>
-            <li><p>Lab class should be in second half</p>
-                <form class="ajax-form" action="{{ url_for('add_C5') }}" method="POST">
-                    <input type="submit" value="&rarr;">
-                </form>
-            </li>
-            <li><p> Class after lunch and before lunch should not be same </p>
-                <form class="ajax-form" action="{{ url_for('add_C6') }}" method="POST">
-                    <input type="submit" value="&rarr;">
-                </form>
-            </li>
-
-            <li><p>Class hour discontinuity : breakage between two classes</p>
-                <form class="ajax-form" action="{{ url_for('add_C7') }}" method="POST">
-                    <input type="submit" value="&rarr;">
-                </form>
-            </li>
-            <li><p>Try to have atleast one 2 hours continous class of a subject with credit >= 3 </p>
-                <form  class="ajax-form" action="{{ url_for('add_C8') }}" method="POST">
-                    <input type="submit" value="&rarr;">
-                </form>
-            </li>
-
-
-        </ul>
-        <br>
-        <p>Delete previous contraints.</p>
-        <form  class="ajax-form" action="{{ url_for('delete') }}" method="POST">
-                <input type="submit" value="Delete">
+    <div>
+        <form id="add-Constraint-form" action="{{ url_for('update_constraints') }}" method="POST">
+            <div class="container">
+                <h1>Add Constraints</h1>
+    
+    
+                
+                <ul>
+                    <h3>Default Constraints</h3>
+                    <li>
+                        <label for="C1">1.Classes of faculty should not clash</label>
+                        <input type="checkbox" class="constraint-checkbox" id="C1" name="constraints[]" value="1">
+                    </li>
+                    <li>
+                        <label for="C2">2.No lab class should clash</label>
+                        <input type="checkbox" class="constraint-checkbox" id="C2" name="constraints[]" value="2">
+                    </li>
+                    <h3>Added Constraints</h3>
+                    <li>
+                        <label for="C3">3.Blank classes are not allowed</label>
+                        <input type="checkbox" class="constraint-checkbox" id="C3" name="constraints[]" value="3">
+                    </li>
+                    <li>
+                        <label for="C4">4.Avoid consecutive classes for the same faculty</label>
+                        <input type="checkbox" class="constraint-checkbox" id="C4" name="constraints[]" value="4">
+                    </li>
+                    <li>
+                        <label for="C5">5.Schedule lab classes only in the second half of the day</label>
+                        <input type="checkbox" class="constraint-checkbox" id="C5" name="constraints[]" value="5">
+                    </li>
+                    <li>
+                        <label for="C6">6.Ensure different subjects before and after lunch</label>
+                        <input type="checkbox" class="constraint-checkbox" id="C6" name="constraints[]" value="6">
+                    </li>
+                    <li>
+                        <label for="C7">7.Faculty must have a 1-hour break after 2-hour classes</label>
+                        <input type="checkbox" class="constraint-checkbox" id="C7" name="constraints[]" value="7">
+                    </li>
+                    <li>
+                        <label for="C8">8.Ensure at least one 2-hour class for subjects with 3+ credits</label>
+                        <input type="checkbox" class="constraint-checkbox" id="C8" name="constraints[]" value="8">
+                    </li>
+                    <li>
+                        <label for="C9">9.Allow faculty to opt out of classes during specific time slots</label>
+                        <input type="checkbox" class="constraint-checkbox" id="C9" name="constraints[]" value="9">
+                        <div id="dropdown-container">
+                            <select name="faculty[]" class="dropdown" id="facultyDropdown" multiple>
+                                <option value="" disabled selected>Select one or more options</option>
+                                <option value="1">Prof. Rudra Mohan Tripathy</option>
+                                <option value="2">Prof. Chandan Misra</option>
+                                <option value="3">Prof. Sourav Mandal</option>
+                                <option value="4">Prof. Sudhansu Bala Das</option>
+                                <option value="5">Prof. Pradip Kundu</option>
+                                <option value="6">Prof. Swarup Chattopadhyay</option>
+                                <option value="7">Prof. Ashish Kumar</option>
+                                <option value="8">Prof. Devendra Kumar Yadav</option>
+                                <option value="9">Mr. Sripati Mohapatra</option>
+                                <option value="10">Prof. Fr. Joshy</option>
+                                <option value="11">Prof. Narayan Chandra Sarangi</option>
+                                <option value="12">Prof. Urmishree Routray</option>
+                                <option value="13">Prof. Chinmayananda Sahoo</option>
+                                <option value="14">Prof. Mahendra P. Agasty</option>
+                            </select>
+                            
+                            <select name="timeslot" class="dropdown" id="timeslotDropdown">
+                                <option value="" disabled selected>Select a timeslot</option>
+                                <option value="0">Slot 1</option>
+                                <option value="1">Slot 2</option>
+                                <option value="2">Slot 3</option>
+                                <option value="3">Slot 4</option>
+                                <option value="4">Slot 5</option>
+                                <option value="5">Slot 6</option>
+                            </select>
+                        
+                        </div>
+                    </li>
+                </ul>
+            </div>
         </form>
-
     </div>
-
 
     
 
@@ -293,14 +262,107 @@ li form input[type="submit"]:active {
 
 
 
+        $(document).ready(function() {
+            $('#C9').on('change', function() {
+                if ($(this).is(':checked')) {
+                    $('#dropdown-container').show();
+                } else {
+                    $('#dropdown-container').hide();
+                }
+            });
+        });
+
+        $(document).ready(function () {
+            $('#facultyDropdown').change(function () {
+                // Get selected values
+                const selectedOptions = Array.from(this.selectedOptions).map(option => option.value);
+
+                // Send selected values to the server via AJAX
+                $.ajax({
+                    url: '/add_teacher',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ faculty: selectedOptions }),
+                    success: function (response) {
+                        console.log(response);
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('Error:', error);
+                    }
+                });
+            });
+            window.onbeforeunload = function () {
+                // Send a request to clear the database
+                navigator.sendBeacon('/clear_timeslot'); // Use `sendBeacon` for reliability
+            };
+        });
+        
+        $(document).ready(function () {
+            // Trigger AJAX when the dropdown value changes
+            $('#timeslotDropdown').change(function () {
+                const selectedTimeslot = this.value;
+
+                if (selectedTimeslot) {
+                    // Send the selected value to the Flask backend
+                    $.ajax({
+                        url: '/add_timeslot',
+                        type: 'POST',
+                        contentType: 'application/json',
+                        data: JSON.stringify({ timeslot: selectedTimeslot }),
+                        success: function (response) {
+                            console.log(response.message); // Show success message
+                        },
+                        error: function (xhr, status, error) {
+                            console.error('Error:', error); // Handle errors
+                        }
+                    });
+                }
+            });
+
+            
+        });
+
+        document.querySelectorAll('.constraint-checkbox').forEach(function(checkbox) {
+            checkbox.addEventListener('change', function() {
+                // Get the value of the selected constraint
+                var constraintId = checkbox.value;
+        
+                // Determine the action: 'add' or 'delete' based on checkbox state
+                var action = checkbox.checked ? 'add' : 'delete';
+        
+                // Prepare the data to send to the server
+                var data = {
+                    constraint_id: constraintId,
+                    action: action  // 'add' or 'delete'
+                };
+        
+                // Send the data to the server based on checkbox state
+                fetch('/update_constraints', {  // Call the '/update_constraints' route
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'  // Tell the server we're sending JSON
+                    },
+                    body: JSON.stringify(data)  // Convert data to JSON string
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        console.log(data.message);  // Log success message or show it to the user
+                    } else {
+                        console.log(data.message);  // Log error message or show it to the user
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('There was an error processing your request. Please try again later.');
+                });
+            });
+        });
 
        
 
         
-        window.addEventListener('unload', function () {
-            // Send a request to the server to delete the column
-            navigator.sendBeacon('/delete-num-column');
-        });
+       
     </script>
 
 </body>

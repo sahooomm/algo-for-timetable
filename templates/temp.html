@@ -1,0 +1,69 @@
+{% comment %} <div class="container"  style="opacity: 0; transform: translateY(20px);">
+        <h1>Add constarints</h1>
+        
+
+           
+            
+
+            
+        
+
+
+
+        <ul>
+            <li><p>Classes of faculty should not clash</p>
+                <form class="ajax-form" action="{{ url_for('add_C1') }}" method="POST">
+                    <input type="submit" value="&rarr;">
+                </form>
+            </li>
+            <li><p>No lab class should be clash</p>
+                <form class="ajax-form" action="{{ url_for('add_C2') }}" method="POST">
+                    <input type="submit" value="&rarr;">
+                </form>
+            </li>
+            <li><p>No blank class</p>
+                <form class="ajax-form" action="{{ url_for('add_C3') }}" method="POST">
+                    <input type="submit" value="&rarr;">
+                </form>
+            </li>
+            <li><p>Repeated class</p>
+                <form class="ajax-form" action="{{ url_for('add_C4') }}" method="POST">
+                    <input type="submit" value="&rarr;">
+                </form>
+            </li>
+            <li><p>Lab class should be in second half</p>
+                <form class="ajax-form" action="{{ url_for('add_C5') }}" method="POST">
+                    <input type="submit" value="&rarr;">
+                </form>
+            </li>
+            <li><p> Class after lunch and before lunch should not be same </p>
+                <form class="ajax-form" action="{{ url_for('add_C6') }}" method="POST">
+                    <input type="submit" value="&rarr;">
+                </form>
+            </li>
+
+            <li><p>Class hour discontinuity : breakage between two classes</p>
+                <form class="ajax-form" action="{{ url_for('add_C7') }}" method="POST">
+                    <input type="submit" value="&rarr;">
+                </form>
+            </li>
+            <li><p>Try to have atleast one 2 hours continous class of a subject with credit >= 3 </p>
+                <form  class="ajax-form" action="{{ url_for('add_C8') }}" method="POST">
+                    <input type="submit" value="&rarr;">
+                </form>
+            </li>
+
+
+        </ul>
+        <br>
+        <p>Delete previous contraints.</p>
+        <form  class="ajax-form" action="{{ url_for('delete') }}" method="POST">
+                <input type="submit" value="Delete">
+        </form>
+
+    </div>
+ {% endcomment %}
+ {% comment %} window.addEventListener('unload', function () {
+    // Send a request to the server to delete the column
+    navigator.sendBeacon('/delete-num-column');
+}); {% endcomment %}

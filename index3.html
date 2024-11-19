@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Run Time Table</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&display=swap">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+
+        /* Container */
+        .container {
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 30px;
+            background: linear-gradient(145deg, #ffffff, #e6e6e6);
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Heading */
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            text-align: center;
+            background: linear-gradient(to right, #0d6efd, #6610f2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* List Styles */
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        li label {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        /* Checkbox */
+        .constraint-checkbox {
+            width: 20px;
+            height: 20px;
+            accent-color: #0d6efd;
+        }
+
+        /* Button Styling */
+        .button {
+            background-color: #0d6efd;
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 15px; /* Space between buttons */
+            display: block;
+            width: 100%; /* Make buttons full width */
+            text-align: center; /* Center the text */
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Tooltip styling */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%; /* Position the tooltip above the button */
+            left: 50%;
+            margin-left: -100px; /* Center the tooltip */
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Dropdown */
+        .dropdown {
+            margin-top: 10px;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        /* Hide dropdown container by default */
+        #dropdown-container {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Add Constraints</h1>
+
+        <ul>
+            <li>
+                <label for="C1">Classes of faculty should not clash</label>
+                <input type="checkbox" class="constraint-checkbox" id="C1">
+            </li>
+            <li>
+                <label for="C2">No lab class should clash</label>
+                <input type="checkbox" class="constraint-checkbox" id="C2">
+            </li>
+            <li>
+                <label for="C3">No blank class</label>
+                <input type="checkbox" class="constraint-checkbox" id="C3">
+            </li>
+            <li>
+                <label for="C4">Avoid consecutive classes for the same faculty</label>
+                <input type="checkbox" class="constraint-checkbox" id="C4">
+            </li>
+            <li>
+                <label for="C5">Schedule lab classes only in the second half of the day</label>
+                <input type="checkbox" class="constraint-checkbox" id="C5">
+            </li>
+            <li>
+                <label for="C6">Ensure different subjects before and after lunch</label>
+                <input type="checkbox" class="constraint-checkbox" id="C6">
+            </li>
+            <li>
+                <label for="C7">Faculty must have a 1-hour break after 2-hour classes</label>
+                <input type="checkbox" class="constraint-checkbox" id="C7">
+            </li>
+            <li>
+                <label for="C8">Ensure at least one 2-hour class for subjects with 3+ credits</label>
+                <input type="checkbox" class="constraint-checkbox" id="C8">
+            </li>
+            <li>
+                <label for="C9">Allow faculty to opt out of classes during specific time slots</label>
+                <input type="checkbox" class="constraint-checkbox" id="C9">
+                <div id="dropdown-container">
+                    <select name="faculty" class="dropdown">
+                        <option value="">Select Faculty</option>
+                        <option value="Prof. Rudra Mohan Tripathy">Prof. Rudra Mohan Tripathy</option>
+                        <option value="Prof. Chandan Misra">Prof. Chandan Misra</option>
+                        <option value="Prof. Sourav Mandal">Prof. Sourav Mandal</option>
+                        <option value="Prof. Sudhansu Bala Das">Prof. Sudhansu Bala Das</option>
+                        <option value="Prof. Pradip Kundu">Prof. Pradip Kundu</option>
+                        <option value="Prof. Swarup Chattopadhyay">Prof. Swarup Chattopadhyay</option>
+                        <option value="Prof. Ashish Kumar">Prof. Ashish Kumar</option>
+                        <option value="Prof. Devendra Kumar Yadav">Prof. Devendra Kumar Yadav</option>
+                        <option value="Mr. Sripati Mohapatra">Mr. Sripati Mohapatra</option>
+                        <option value="Prof. Fr. Joshy">Prof. Fr. Joshy</option>
+                        <option value="Prof. Narayan Chandra Sarangi">Prof. Narayan Chandra Sarangi</option>
+                        <option value="Prof. Urmishree Routray">Prof. Urmishree Routray</option>
+                        <option value="Prof. Chinmayananda Sahoo">Prof. Chinmayananda Sahoo</option>
+                        <option value="Prof. Mahendra P. Agasty">Prof. Mahendra P. Agasty</option>
+                    </select>
+                    <select name="timeslot" class="dropdown">
+                        <option value="">Select Time Slot</option>
+                        <option value="slot1">Slot 1</option>
+                        <option value="slot2">Slot 2</option>
+                        <option value="slot3">Slot 3</option>
+                        <option value="slot4">Slot 4</option>
+                        <option value="slot5">Slot 5</option>
+                        <option value="slot6">Slot 6</option>
+                    </select>
+                </div>
+            </li>
+        </ul>
+
+        <div class="tooltip">
+            <button type="button" class="button" id="delete-constraints">Delete Constraints</button>
+            <span class="tooltiptext">Delete previously selected constraints</span>
+        </div>
+        <button type="submit" class="button">Submit</button>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#C9').on('change', function() {
+                if ($(this).is(':checked')) {
+                    $('#dropdown-container').show();
+                } else {
+                    $('#dropdown-container').hide();
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

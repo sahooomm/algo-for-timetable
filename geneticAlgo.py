@@ -175,18 +175,86 @@ print("lmao")
 #     f.write("</body></html>")
 
 
+# with open("templates/timetable.html", "w") as f:
+#     f.write("<html><head><title>Schedule Output</title>")
+#     f.write("<style>")
+#     f.write("body { font-family: Arial, sans-serif; background-color: #f4f4f4; }")
+#     f.write("h1, h2, h3 { color: #333; margin-bottom: 10px; }")
+#     f.write("table { border-collapse: collapse; width: 100%; margin-bottom: 20px; }")
+#     f.write("th, td { border: 3px solid #ddd; padding: 8px; text-align: left; }")
+#     f.write("th { background-color: #f0f0f0; font-weight: bold; }")
+#     f.write("tr:nth-child(even) { background-color: #f2f2f2; }")
+#     f.write("</style>")
+#     f.write("</head><body>")
+#     f.write("<h1 style='text-align: center;'>Timetable</h1>")
+
+#     # # Add the fitness value
+#     # f.write(f"<p style='text-align: center;'>Max fitness achieved: {max(Fit_values)}</p>")
+
+#     # Function to format schedule with slot names
+#     def format_schedule(sem_dict, year_name):
+#         # f.write(f"<h3>{year_name}</h3>")
+#         f.write("<table border='1'>")
+       
+#         # Assuming a maximum of 6 slots per day. Adjust if necessary.
+#         f.write("<tr><th>Day</th><th>Slot1</th><th>Slot2</th><th>Slot3</th><th>Slot4</th><th>Slot5</th><th>Slot6</th></tr>")
+       
+#         for day, slots in sem_dict.items():
+#             f.write(f"<tr><td>{day}</td>")
+#             for slot in slots:
+#                 f.write(f"<td>{slot}</td>")
+#             # Fill remaining slots if there are fewer than the max number
+#             for _ in range(len(slots), 6):
+#                 f.write("<td></td>")
+#             f.write("</tr>")
+#         f.write("</table>")
+
+#     # Assuming separateChromosome() is defined elsewhere and returns the data in the format expected
+#     y1, y2, y3, y4 = separateChromosome(pop[0])
+
+#     f.write("<h3>First Year</h3>")
+#     format_schedule(y1, "First Year")
+
+#     f.write("<h3>Second Year</h3>")
+#     format_schedule(y2, "Second Year")
+
+#     f.write("<h3>Third Year</h3>")
+#     format_schedule(y3, "Third Year")
+
+#     f.write("<h3>Fourth Year</h3>")
+#     format_schedule(y4, "Fourth Year")
+
+#     f.write("</body></html>")
+
 with open("templates/timetable.html", "w") as f:
     f.write("<html><head><title>Schedule Output</title>")
     f.write("<style>")
-    f.write("body { font-family: Arial, sans-serif; background-color: #f4f4f4; }")
-    f.write("h1, h2, h3 { color: #333; margin-bottom: 10px; }")
-    f.write("table { border-collapse: collapse; width: 100%; margin-bottom: 20px; }")
-    f.write("th, td { border: 3px solid #ddd; padding: 8px; text-align: left; }")
-    f.write("th { background-color: #f0f0f0; font-weight: bold; }")
-    f.write("tr:nth-child(even) { background-color: #f2f2f2; }")
+    f.write("body { font-family: 'Arial', sans-serif; background-color: #e6f0ff; margin: 0; padding: 0; }")
+    f.write("h1 { color: #003366; font-size: 36px; margin-top: 50px; text-align: center; text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1); }")
+    f.write("h2, h3 { color: #00509e; margin-bottom: 10px; text-align: center; font-size: 24px; }")
+    f.write("table { border-collapse: collapse; width: 80%; margin: 50px auto; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); background-color: #fff; border-radius: 8px; }")
+    f.write("th, td { border: 1px solid #bddbff; padding: 12px 20px; text-align: center; font-size: 18px; }")
+    f.write("th { background-color: #0066cc; color: white; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }")
+    f.write("td { background-color: #f0f8ff; color: #333; }")
+    f.write("td:first-child { font-weight: bold; color: #0066cc; }")
+    f.write("tr:nth-child(even) { background-color: #f2f9ff; }")
+    f.write("tr:hover { background-color: #e6f7ff; }")
+    f.write("footer { text-align: center; font-size: 14px; color: #999; margin-top: 40px; padding: 20px; background-color: #f2f7ff; }")
+    f.write(".container { max-width: 1200px; margin: 0 auto; padding: 20px; }")
+    f.write(".content { padding: 40px 0; }")
     f.write("</style>")
     f.write("</head><body>")
-    f.write("<h1 style='text-align: center;'>Timetable</h1>")
+    f.write("<div class='container'>")
+    f.write("<div class='content'>")
+    f.write("<h1>Timetable</h1>")
+    f.write("<h2>Class Schedule for the Week</h2>")
+    f.write("<table>")
+    
+    f.write("<tbody>")
+    
+    
+
+
 
     # # Add the fitness value
     # f.write(f"<p style='text-align: center;'>Max fitness achieved: {max(Fit_values)}</p>")
@@ -197,7 +265,7 @@ with open("templates/timetable.html", "w") as f:
         f.write("<table border='1'>")
        
         # Assuming a maximum of 6 slots per day. Adjust if necessary.
-        f.write("<tr><th>Day</th><th>Slot1</th><th>Slot2</th><th>Slot3</th><th>Slot4</th><th>Slot5</th><th>Slot6</th></tr>")
+        f.write("<tr><th>Day</th><th>9:30-10:30</th><th>10:30-11:30</th><th>11:30-12:30</th><th>2:00-3:00</th><th>3:00-4:00</th><th>4:00-5:00</th></tr>")
        
         for day, slots in sem_dict.items():
             f.write(f"<tr><td>{day}</td>")

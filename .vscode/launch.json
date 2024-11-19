@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/LENEVO1/OneDrive/Desktop/helo",
-      "program": "c:/Users/LENEVO1/OneDrive/Desktop/helo/build/Debug/outDebug",
+      "cwd": "c:/Users/LENEVO1/Downloads/helo",
+      "program": "c:/Users/LENEVO1/Downloads/helo/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
